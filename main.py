@@ -13,8 +13,10 @@ import smtplib
 import wikipedia
 import shutil
 
+
 def setup_logging():
     logging.basicConfig(filename='voice_assistant.log', level=logging.INFO, format='%(asctime)s - %(message)s')
+
 
 def open_this_computer():
     try:
@@ -23,11 +25,13 @@ def open_this_computer():
     except Exception as e:
         return f"An error occurred while opening 'This PC': {str(e)}"
 
+
 def log_response(response):
     logging.info(response)
-    console_log.config(state=tk.NORMAL) # Enable writing to the console log
+    console_log.config(state=tk.NORMAL)  # Enable writing to the console log
     console_log.insert(tk.END, "Assistant: " + response + '\n')
-    console_log.config(state=tk.DISABLED) # Disable writing to the console log
+    console_log.config(state=tk.DISABLED)  # Disable writing to the console log
+
 
 def create_folder(folder_name):
     try:
@@ -36,12 +40,14 @@ def create_folder(folder_name):
     except Exception as e:
         return f"An error occurred while creating the folder: {str(e)}"
 
+
 def delete_folder(folder_name):
     try:
         shutil.rmtree(folder_name)
         return f"Folder '{folder_name}' deleted successfully."
     except Exception as e:
         return f"An error occurred while deleting the folder: {str(e)}"
+
 
 def rename_folder(old_name, new_name):
     try:
@@ -50,6 +56,7 @@ def rename_folder(old_name, new_name):
     except Exception as e:
         return f"An error occurred while renaming the folder: {str(e)}"
 
+
 def move_to_directory(target_directory):
     try:
         os.chdir(target_directory)
@@ -57,10 +64,12 @@ def move_to_directory(target_directory):
     except Exception as e:
         return f"An error occurred while moving to the directory: {str(e)}"
 
+
 def speak(text):
     engine = pyttsx3.init()
     engine.say(text)
     engine.runAndWait()
+
 
 def get_weather(city):
     api_key = "a85ae82c61fc4cb8c4b03016986dce09"
@@ -74,12 +83,14 @@ def get_weather(city):
     else:
         return "Sorry, I couldn't fetch the weather information."
 
+
 def open_telegram_app():
     try:
-        os.startfile("C:\Users\User\AppData\Roaming\Telegram Desktopelegram.exe")  # Путь к исполняемому файлу Telegram
+        os.startfile("C:\\Users\\User\\AppData\\Roaming\\Telegram Desktop\\Telegram.exe")   # Путь к исполняемому файлу Telegram
         return "Opening Telegram app."
     except Exception as e:
         return f"An error occurred while opening Telegram: {str(e)}"
+
 
 def tell_joke():
     jokes = [
@@ -91,32 +102,40 @@ def tell_joke():
     ]
     return random.choice(jokes)
 
+
 def get_date_time():
     now = datetime.datetime.now()
     current_time = now.strftime("%H:%M")
     current_date = now.strftime("%Y-%m-%d")
     return f"The current time is {current_time} and the date is {current_date}."
 
+
 def open_photoshop_app():
     try:
-        os.startfile("C:\Program Files\Adobe\Adobe Photoshop (Beta)\Photoshop.exe")  # Путь к исполняемому файлу Adobe Photoshop
+        os.startfile(
+            "C:\Program Files\Adobe\Adobe Photoshop (Beta)\Photoshop.exe")  # Путь к исполняемому файлу Adobe Photoshop
         return "Opening Adobe Photoshop app."
     except Exception as e:
         return f"An error occurred while opening Adobe Photoshop: {str(e)}"
 
+
 def open_premiere_pro_app():
     try:
-        os.startfile("C:\Program Files\Adobe\Adobe Premiere Pro 2023\Adobe Premiere Pro.exe")  # Путь к исполняемому файлу Adobe Premiere Pro
+        os.startfile(
+            "C:\Program Files\Adobe\Adobe Premiere Pro 2023\Adobe Premiere Pro.exe")  # Путь к исполняемому файлу Adobe Premiere Pro
         return "Opening Adobe Premiere Pro app."
     except Exception as e:
         return f"An error occurred while opening Adobe Premiere Pro: {str(e)}"
 
+
 def open_audition_app():
     try:
-        os.startfile("C:\Program Files\Adobe\Adobe Audition 2023\Adobe Audition.exe")  # Путь к исполняемому файлу Adobe Audition
+        os.startfile(
+            "C:\Program Files\Adobe\Adobe Audition 2023\Adobe Audition.exe")  # Путь к исполняемому файлу Adobe Audition
         return "Opening Adobe Audition app."
     except Exception as e:
         return f"An error occurred while opening Adobe Audition: {str(e)}"
+
 
 def send_email(receiver_email, subject, message):
     sender_email = "flash369636@gmail.com"
@@ -132,6 +151,7 @@ def send_email(receiver_email, subject, message):
     except Exception as e:
         return f"Error sending email: {str(e)}"
 
+
 def search_wikipedia(query):
     try:
         result = wikipedia.summary(query, sentences=2)
@@ -140,8 +160,11 @@ def search_wikipedia(query):
         options = e.options[:5]
         return f"Multiple results found: {', '.join(options)}"
 
+
 def play_game():
     return "Sure! Let's play a game. I'm thinking of a number between 1 and 100. Try to guess it!"
+
+
 def listen():
     recognizer = sr.Recognizer()
     with sr.Microphone() as source:
@@ -174,6 +197,7 @@ def listen():
             console_log.config(state=tk.DISABLED)  # Disable writing to the console log
             return ""
 
+
 def open_program(program_name):
     try:
         os.startfile(program_name)
@@ -182,6 +206,7 @@ def open_program(program_name):
         console_log.insert(tk.END, str(e) + '\n')
         console_log.config(state=tk.DISABLED)  # Disable writing to the console log
         speak("Sorry, I couldn't open the program.")
+
 
 def open_website(website_url):
     try:
@@ -192,21 +217,25 @@ def open_website(website_url):
         console_log.config(state=tk.DISABLED)  # Disable writing to the console log
         speak("Sorry, I couldn't open the website.")
 
+
 def play_music_on_youtube(song_name):
     query = song_name.replace(" ", "+")
     url = f"https://www.youtube.com/results?search_query={query}"
     open_website(url)
+
 
 def stop_voice_assistant():
     console_log.config(state=tk.NORMAL)  # Enable writing to the console log
     console_log.insert(tk.END, "Assistant stopped.\n")
     console_log.config(state=tk.DISABLED)  # Disable writing to the console log
 
+
 def leave_assistant():
     console_log.config(state=tk.NORMAL)  # Enable writing to the console log
     console_log.insert(tk.END, "Assistant is leaving. Goodbye!\n")
     console_log.config(state=tk.DISABLED)  # Disable writing to the console log
     root.destroy()
+
 
 def start_voice_assistant():
     console_log.config(state=tk.NORMAL)  # Enable writing to the console log
@@ -325,6 +354,7 @@ def start_voice_assistant():
             speak("Sorry, I don't understand that command.")
             log_response("Unknown command: " + query)
 
+
 def main():
     global root
     root = tk.Tk()
@@ -350,10 +380,12 @@ def main():
 
     # Create a console log inside the application
     global console_log
-    console_log = tk.Text(root, bg="#000000", fg="white", wrap=tk.WORD, state=tk.NORMAL, height=10, bd=0, highlightthickness=0)
+    console_log = tk.Text(root, bg="#000000", fg="white", wrap=tk.WORD, state=tk.NORMAL, height=10, bd=0,
+                          highlightthickness=0)
     console_log.pack(fill=tk.BOTH, expand=True, padx=10, pady=5)
 
     root.mainloop()
+
 
 if __name__ == "__main__":
     main()
