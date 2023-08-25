@@ -46,7 +46,7 @@ Contributing
 Contributions are welcome! If you'd like to add new features, improve existing code, or fix issues, feel free to open a pull request.
 
 License
-This project is licensed under the Open Licence.
+This project is licensed under the GNU GENERAL PUBLIC LICENSE.
 
 Acknowledgements
 Pyttsx3 - Text-to-speech conversion library.
