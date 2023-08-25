@@ -1,4 +1,4 @@
-# Voice Assistant
+# Voice Assistant beta v0.1
 
 Welcome to the Voice Assistant project! This project aims to create a simple voice-controlled assistant using Python. The assistant can perform various tasks based on voice commands, such as opening applications, creating folders, and more.
 
