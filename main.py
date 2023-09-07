@@ -241,8 +241,8 @@ class VoiceAssistantApp:
         return f"The current time is {current_time} and the date is {current_date}."
 
     def send_email(self, receiver_email, subject, message):
-        sender_email = "flash369636@gmail.com"
-        sender_password = "Sherbek369636"
+        sender_email = "YOUR_Email_here"
+        sender_password = "Your_Password_here"
         try:
             server = smtplib.SMTP("smtp.gmail.com", 587)
             server.starttls()
