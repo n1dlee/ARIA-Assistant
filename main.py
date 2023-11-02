@@ -13,8 +13,14 @@ import requests
 import shutil
 import datetime
 import logging
+import psutil
+
 
 class VoiceAssistantApp:
+    API_KEY = "YOUR API HERE"
+    SENDER_EMAIL = "YOUR E-MAIL HERE"
+    SENDER_PASSWORD = "YOUR PASSWORD HERE"
+
     def __init__(self, root):
         self.root = root
         self.root.title("Voice Assistant")
@@ -22,14 +28,11 @@ class VoiceAssistantApp:
 
         self.setup_logging()
 
-        background_image = Image.open("bgfile\wallground.jpg")
-        self.background_photo = ImageTk.PhotoImage(background_image)
+        self.background_photo = ImageTk.PhotoImage(Image.open("bgfile\wallground.jpg"))
 
         self.create_gui()
         self.engine = self.initialize_speech_engine()
-        self.wake_up_word = "Jarvis"
 
-        self.listening = False
     def setup_logging(self):
         logging.basicConfig(filename='voice_assistant.log', level=logging.INFO, format='%(asctime)s - %(message)s')
 
@@ -43,20 +46,52 @@ class VoiceAssistantApp:
         start_button = Button(self.root, text="Start Assistant", command=self.start_voice_assistant_thread)
         start_button.pack(pady=10)
 
-        self.console_log = Text(self.root, bg="#000000", fg="white", wrap=tk.WORD, state=tk.NORMAL, height=10, bd=0, highlightthickness=0)
+        self.console_log = Text(self.root, bg="#000000", fg="white", wrap=tk.WORD, state=tk.NORMAL, height=10, bd=0,
+                                highlightthickness=0)
         self.console_log.pack(fill=tk.BOTH, expand=True, padx=10, pady=5)
 
     def start_voice_assistant_thread(self):
         threading.Thread(target=self.start_voice_assistant).start()
 
+    def close_application(self, app_name):
+        for process in psutil.process_iter(['pid', 'name']):
+            if app_name.lower() in process.info['name'].lower():
+                pid = process.info['pid']
+                p = psutil.Process(pid)
+                p.terminate()
+                return f"Application '{app_name}' has been closed."
+        return f"No running instance of '{app_name}' found."
+
+    def calculator_operation(operation, num1, num2):
+        if operation == 'add':
+            result = num1 + num2
+        elif operation == 'subtract':
+            result = num1 - num2
+        elif operation == 'multiply':
+            result = num1 * num2
+        elif operation == 'divide':
+            if num2 != 0:
+                result = num1 / num2
+            else:
+                return "Error: Division by zero"
+        else:
+            return "Error: Invalid operation"
+
+        return result
+
     def start_voice_assistant(self):
         self.log_response("Hello! How can I assist you?")
-        
+
         recognizer = sr.Recognizer()
 
         while True:
             query = self.listen(recognizer)
             self.log_response(query)
+
+            if "hello" in query.lower():
+                self.speak("Good part of the day!")
+            elif "what's up" in query.lower() or "how are you" in query.lower():
+                self.speak("Great! What can I do for you?")
 
             if "open main folder" in query:
                 result = self.open_this_computer()
@@ -131,6 +166,8 @@ class VoiceAssistantApp:
                 self.open_program("chrome.exe")
             elif "youtube" in query:
                 self.open_website("https://www.youtube.com")
+            elif "desmos" in query:
+                self.open_website("https://www.desmos.com/calculator?lang=ru")
             elif "spotify" in query:
                 self.open_program("spotify.exe")
             elif "steam" in query:
@@ -159,6 +196,14 @@ class VoiceAssistantApp:
                     self.play_music_on_youtube(video_query)
             elif "open all play" in query or "open allplay" in query:
                 self.open_website("https://allplay.uz/")
+            elif "close program" in query or "close application" in query:  # Modify this line
+                self.speak("Sure, which program would you like to close?")
+                close_query = self.listen(recognizer)
+                self.log_response(close_query)
+                if close_query:
+                    close_result = self.close_application(close_query)  # Modify this line
+                    self.speak(close_result)
+                    self.log_response(close_result)
             elif "stop assistant" in query:
                 self.stop_voice_assistant()
                 break
@@ -166,7 +211,7 @@ class VoiceAssistantApp:
                 self.leave_assistant()
                 break
             else:
-                self.speak("Sorry, I don't understand that command.")
+                self.speak("Unknown command")
                 self.log_response("Unknown command: " + query)
 
     def listen(self, recognizer):
@@ -177,7 +222,8 @@ class VoiceAssistantApp:
             self.update_console_log("Listening...")
 
             try:
-                audio = recognizer.listen(source, timeout=2)
+                audio = recognizer.listen(source, timeout=5,
+                                          phrase_time_limit=5)  # Adjust the timeout and phrase_time_limit as needed
                 self.update_console_log("Recognizing...")
                 query = recognizer.recognize_google(audio)
                 self.update_console_log(f"You said: {query}")
@@ -206,6 +252,7 @@ class VoiceAssistantApp:
     def update_console_log(self, message):
         self.console_log.config(state=tk.NORMAL)
         self.console_log.insert(tk.END, message + '\n')
+        self.console_log.see(tk.END)  # Scroll to the end
         self.console_log.config(state=tk.DISABLED)
 
     def speak(self, text):
@@ -241,17 +288,15 @@ class VoiceAssistantApp:
         return f"The current time is {current_time} and the date is {current_date}."
 
     def send_email(self, receiver_email, subject, message):
-        sender_email = "YOUR_Email_here"
-        sender_password = "Your_Password_here"
         try:
             server = smtplib.SMTP("smtp.gmail.com", 587)
             server.starttls()
-            server.login(sender_email, sender_password)
+            server.login(self.SENDER_EMAIL, self.SENDER_PASSWORD)
             email_text = f"Subject: {subject}\n\n{message}"
-            server.sendmail(sender_email, receiver_email, email_text)
+            server.sendmail(self.SENDER_EMAIL, receiver_email, email_text)
             server.quit()
             return "Email sent successfully."
-        except Exception as e:
+        except smtplib.SMTPException as e:
             return f"Error sending email: {str(e)}"
 
     def create_folder(self, folder_name):
