@@ -1,8 +1,9 @@
-import tkinter as tk
-from tkinter import Text, Button
+from pathlib import Path
+from tkinter import Tk, Canvas, Text, Button, PhotoImage
 from PIL import Image, ImageTk
-import pyttsx3
 import threading
+import tkinter as tk
+import pyttsx3
 import speech_recognition as sr
 import os
 import smtplib
@@ -15,11 +16,13 @@ import datetime
 import logging
 import psutil
 
+from Assistant.gui import relative_to_assets, canvas
+
 
 class VoiceAssistantApp:
-    API_KEY = "a85ae82c61fc4cb8c4b03016986dce09"
-    SENDER_EMAIL = "flash369636@gmail.com"
-    SENDER_PASSWORD = "Sherbek369636"
+    API_KEY = "YOUR_TOKEN_HERE"
+    SENDER_EMAIL = "YOUR_EMAIL_HERE"
+    SENDER_PASSWORD = "YOUR_PASSWORD_HERE"
 
     def __init__(self, root):
         self.root = root
@@ -214,6 +217,7 @@ class VoiceAssistantApp:
                 self.speak("Unknown command")
                 self.log_response("Unknown command: " + query)
 
+
     def listen(self, recognizer):
         with sr.Microphone() as source:
             recognizer.adjust_for_ambient_noise(source)
@@ -371,10 +375,58 @@ class VoiceAssistantApp:
         self.update_console_log("Assistant is leaving. Goodbye!")
         self.root.destroy()
 
-def main():
-    root = tk.Tk()
-    app = VoiceAssistantApp(root)
-    root.mainloop()
+class GUIApp:
+    def __init__(self, root):
+        self.root = root
+        self.root.geometry("400x569")
+        self.root.configure(bg="#FFFFFF")
+
+        self.create_widgets()
+        self.voice_assistant_app = VoiceAssistantApp(self.root)
+
+    def create_widgets(self):
+        # Your existing GUI code here...
+
+        button_image_1 = PhotoImage(file="path_to_button_1.png")
+        button_1 = Button(
+            image=button_image_1,
+            borderwidth=0,
+            highlightthickness=0,
+            command=self.voice_assistant_app.start_voice_assistant_thread,
+            relief="flat"
+        )
+        button_1.place(x=186.0, y=349.0, width=29.0, height=28.0)
+
+        image_image_3 = PhotoImage(
+            file=relative_to_assets("image_3.png"))
+        image_3 = canvas.create_image(
+            200.0,
+            307.0,
+            image=image_image_3
+        )
+
+        entry_image_1 = PhotoImage(file=relative_to_assets("entry_1.png"))
+        entry_bg_1 = canvas.create_image(
+            199.0,
+            522.5,
+            image=entry_image_1
+        )
+        entry_1 = Text(
+            bd=0,
+            bg="#202020",
+            fg="#000716",
+            highlightthickness=0,
+            state=tk.DISABLED  # Set the state to DISABLED to make it non-editable
+        )
+        entry_1.place(
+            x=0.0,
+            y=476.0,
+            width=398.0,
+            height=91.0
+        )
+
 
 if __name__ == "__main__":
-    main()
+    window = Tk()
+    app = GUIApp(window)
+    window.mainloop()
