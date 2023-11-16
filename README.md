@@ -8,7 +8,7 @@ Welcome to the Voice Assistant project! This project aims to create a simple voi
 
 Make sure you have the following installed on your system:
 
-- Python 3.11.4
+- Python 3.9.13
 - Required Python packages: `pyttsx3`, `speech_recognition`, `tkinter` (usually comes with Python), `PIL` (Python Imaging Library)
 
 ### Installation
