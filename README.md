@@ -59,3 +59,5 @@ For questions or feedback, you can contact "flash369636@gmail.com".
 
 Old and New GUI Screenshots below:
 ![OLD](https://github.com/Nodik2006/VoiceAssitant/blob/main/Old%20GUI.png)
+
+![NEW](https://github.com/Nodik2006/VoiceAssitant/blob/main/New%20GUI.png)
