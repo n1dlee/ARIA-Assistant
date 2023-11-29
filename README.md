@@ -12,7 +12,6 @@ Make sure you have the following installed on your system:
 - Required Python packages: `pyttsx3`, `speech_recognition`, `tkinter` (usually comes with Python), `PIL` (Python Imaging Library)
 
 [!IMPORTANT]
-
 ### Installation
 
 1. Clone this repository or download the ZIP file.
