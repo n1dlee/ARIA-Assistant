@@ -57,6 +57,9 @@ tkinter - Standard GUI library for Python.
 Contact
 For questions or feedback, you can contact "flash369636@gmail.com".
 
+> **IMPORTANT**
+"Start Application" button in New GUI is in the reactor
+
 Old and New GUI Screenshots below:
 ![OLD](https://github.com/Nodik2006/VoiceAssitant/blob/main/Old%20GUI.png)
 
