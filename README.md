@@ -1,4 +1,4 @@
-# Voice Assistant beta v0.1
+# Voice Assistant beta v0.2
 
 Welcome to the Voice Assistant project! This project aims to create a simple voice-controlled assistant using Python. The assistant can perform various tasks based on voice commands, such as opening applications, creating folders, and more.
 
@@ -56,3 +56,6 @@ tkinter - Standard GUI library for Python.
 
 Contact
 For questions or feedback, you can contact "flash369636@gmail.com".
+
+Old and New GUI Screenshots below:
+![Image alt](https://github.com/Nodik2006/VoiceAssitant/edit/main/Old GUI.png)
