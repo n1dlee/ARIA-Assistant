@@ -11,7 +11,9 @@ Make sure you have the following installed on your system:
 - Python 3.9.13
 - Required Python packages: `pyttsx3`, `speech_recognition`, `tkinter` (usually comes with Python), `PIL` (Python Imaging Library)
 
-### Installation
+>[!IMPORTANT]
+
+>### Installation
 
 1. Clone this repository or download the ZIP file.
 2. Install the required Python packages if not already installed. You can use the following command:
@@ -58,6 +60,6 @@ Contact
 For questions or feedback, you can contact "flash369636@gmail.com".
 
 Old and New GUI Screenshots below:
-![OLD](https://github.com/Nodik2006/VoiceAssitant/blob/main/Old%20GUI.png =350x290)
+![OLD](https://github.com/Nodik2006/VoiceAssitant/blob/main/Old%20GUI.png)
 
-![NEW](https://github.com/Nodik2006/VoiceAssitant/blob/main/New%20GUI.png =350x500)
+![NEW](https://github.com/Nodik2006/VoiceAssitant/blob/main/New%20GUI.png)
