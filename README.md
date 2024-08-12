@@ -25,7 +25,7 @@ Usage
 2. Navigate to the directory where the project files are located.
 
 3. Run the main script:
-      python voice_assistant.py
+      python assistant_gpt.py
    
 4.. The graphical user interface (GUI) window will open.
 
