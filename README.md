@@ -1,4 +1,4 @@
-# Voice Assistant beta v0.2
+# Voice Assistant beta v0.3
 
 Welcome to the Voice Assistant project! This project aims to create a simple voice-controlled assistant using Python. The assistant can perform various tasks based on voice commands, such as opening applications, creating folders, and more.
 
@@ -9,7 +9,7 @@ Welcome to the Voice Assistant project! This project aims to create a simple voi
 Make sure you have the following installed on your system:
 
 - Python 3.9.13
-- Required Python packages: `pyttsx3`, `speech_recognition`, `tkinter` (usually comes with Python), `PIL` (Python Imaging Library)
+- Required Python packages: `pyttsx3`, `speech_recognition`, `tkinter` (usually comes with Python), `PIL` (Python Imaging Library), `openai` (for using ChatGPT)
 
 ### Installation
 
@@ -17,7 +17,7 @@ Make sure you have the following installed on your system:
 2. Install the required Python packages if not already installed. You can use the following command:
 
    ```bash
-   pip install pyttsx3 speechrecognition pillow
+   pip install -r requirements.txt
    
 Usage
 1. Open a terminal or command prompt.
