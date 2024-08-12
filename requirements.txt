@@ -1,0 +1,6 @@
+openai
+pyttsx3
+SpeechRecognition
+psutil
+wikipedia
+pillow
