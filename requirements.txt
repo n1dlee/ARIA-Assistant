@@ -4,3 +4,4 @@ SpeechRecognition
 psutil
 wikipedia
 pillow
+pyaudio
