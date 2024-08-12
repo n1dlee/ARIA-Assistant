@@ -60,6 +60,9 @@ For questions or feedback, you can contact "flash369636@gmail.com".
 > [!NOTE]
 "Start Application" button in New GUI is in the reactor
 
+> [!NOTE]
+Changelog 12.08.2024: I finally returned to the project and now, new GUI works perfect!!! Additionally, you can use ChatGPT if you insert you API_KEY from openai official website 
+
 Old and New GUI Screenshots below:
 ![OLD](https://github.com/Nodik2006/VoiceAssitant/blob/main/Old%20GUI.png)
 
