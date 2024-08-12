@@ -18,8 +18,8 @@ import psutil
 from pathlib import Path
 
 # Paths setup
-OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = OUTPUT_PATH / Path(r"C:\Files\Python Projects\Assistant\assets\frame0")
+OUTPUT_PATH = os.path.dirname(os.path.abspath(__file__))
+ASSETS_PATH = os.path.join(OUTPUT_PATH, "assets", "frame0")
 
 def relative_to_assets(path: str) -> Path:
     return ASSETS_PATH / Path(path)
