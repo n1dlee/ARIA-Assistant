@@ -15,6 +15,7 @@ import shutil
 import datetime
 import logging
 import psutil
+import config
 from pathlib import Path
 
 # Paths setup
@@ -23,6 +24,12 @@ ASSETS_PATH = os.path.join(OUTPUT_PATH, "assets", "frame0")
 
 def relative_to_assets(path: str) -> Path:
     return ASSETS_PATH / Path(path)
+
+
+# Config setup
+
+OPENWEATHERMAP_API_KEY = config.OPENWEATHERMAP_API_KEY
+OPENAI_API_KEY = config.OPENAI_API_KEY
 
 # Voice Assistant class
 class VoiceAssistantApp:
@@ -86,8 +93,6 @@ class VoiceAssistantApp:
         self.console_log.place(x=0, y=480, width=0, height=0)  # Adjusted size and position
         
         
-        
-    OPENWEATHERMAP_API_KEY = "REPLACE_WITH_YOUR_OPENWEATHERMAP_API_KEY"
         
     def log_response(self, text):
         """Logs the conversation into the entry box."""
@@ -384,7 +389,7 @@ class VoiceAssistantApp:
 
     def ask_gpt(self, query):
         """Sends the query to GPT-3.5 and returns the response."""
-        openai.api_key = 'REPLACE_WITH_YOUR_OPENAI_API_KEY'
+        openai.api_key = OPENAI_API_KEY
         response = openai.Completion.create(
             engine="text-davinci-003",
             prompt=query,
