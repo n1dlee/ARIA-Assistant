@@ -22,7 +22,7 @@ ARIA (Artificially Responsive Intelligent Assistant) is not just another voice a
 
 ## 🛠️ ARIA's Technological Foundation
 
-- Python 3.x
+- Python 3.7+
 - Tkinter for Graphical User Interface
 - Advanced Speech Recognition algorithms
 - pyttsx3 for Natural-sounding Text-to-Speech
@@ -77,6 +77,7 @@ ARIA is licensed under the MIT License - see the [LICENSE](LICENSE) file for ful
 - OpenAI for their groundbreaking GPT-3.5 model
 - The open-source community for the robust libraries powering ARIA
 - You, for choosing ARIA as your intelligent assistant!
+- assistant_gpt.py file <-- previous GUI model which currently working fine (started working on new GUI for ARIA ツ) 
 
 ---
 
