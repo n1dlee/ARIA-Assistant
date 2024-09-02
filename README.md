@@ -68,9 +68,20 @@ ARIA (Artificially Responsive Intelligent Assistant) is not just another voice a
 
 Have ideas to expand ARIA's capabilities? We welcome your contributions! Feel free to open an issue or submit a pull request to help ARIA evolve.
 
+
 ## 📜 Licensing
 
-ARIA is licensed under the MIT License - see the [LICENSE](LICENSE) file for full details.
+ARIA is licensed under the GNU General Public License v3.0 (GPL-3.0). This means:
+
+- You are free to use, modify, and distribute this software.
+- If you distribute modified versions, you must also distribute them under the GPL-3.0 license.
+- You must disclose the source code when you distribute the software.
+- Changes made to the original software must be clearly indicated.
+
+For the full license text, see the [LICENSE](LICENSE) file in this repository or visit [GNU GPL v3.0](https://www.gnu.org/licenses/gpl-3.0.en.html).
+
+
+With ARIA, elevate your digital experience to new heights of efficiency and intelligence! 🎙️✨
 
 ## 🙏 Acknowledgments
 
